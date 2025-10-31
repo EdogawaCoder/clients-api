@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
-public class ClientsRepository {
+public class ClientRepository {
 
     private ConnectionFactory connectionFactory = new ConnectionFactory();
 
@@ -30,8 +30,8 @@ public class ClientsRepository {
         preparedStatement.setString(3, client.getEmail());
         preparedStatement.setString(4, client.getCpf());
         preparedStatement.setString(5, client.getPhone());
-        preparedStatement.setDate(6, new java.sql.Date(client.getBornDate().getTime()));
-        preparedStatement.setDate(7, new java.sql.Date(client.getRegisterDate().getTime()));
+        preparedStatement.setDate(6, new java.sql.Date(client.getDateBorn().getTime()));
+        preparedStatement.setDate(7, new java.sql.Date(client.getDateRegist().getTime()));
 
         preparedStatement.execute();
 
@@ -49,7 +49,7 @@ public class ClientsRepository {
                 email = ?,
                 cpf = ?,
                 phone = ?,
-                born_date = ?
+                date_born = ?
                 WHERE
                     id = ?;
                 """;
@@ -60,7 +60,7 @@ public class ClientsRepository {
         preparedStatement.setString(2, client.getEmail());
         preparedStatement.setString(3, client.getCpf());
         preparedStatement.setString(4, client.getPhone());
-        preparedStatement.setDate(5, new java.sql.Date(client.getBornDate().getTime()));
+        preparedStatement.setDate(5, new java.sql.Date(client.getDateBorn().getTime()));
         preparedStatement.setObject(6, client.getId());
 
         var rowsAffected = preparedStatement.executeUpdate();
@@ -98,10 +98,10 @@ public class ClientsRepository {
         var connection = connectionFactory.getConnection();
 
         var query = """
-                SELECT id, name, email, cpf, phone, born_date, register_date
+                SELECT id, name, email, cpf, phone, date_born, date_regist
                 FROM clients
                 WHERE name ILIKE ?
-                ORDER BY nome ASC;
+                ORDER BY name ASC;
                 """;
 
         var statement = connection.prepareStatement(query);
@@ -119,8 +119,8 @@ public class ClientsRepository {
             client.setEmail(resultSet.getString("email"));
             client.setCpf(resultSet.getString("cpf"));
             client.setPhone(resultSet.getString("phone"));
-            client.setBornDate(new Date(resultSet.getDate("born_date").getTime()));
-            client.setRegisterDate(new Date(resultSet.getDate("register_date").getTime()));
+            client.setDateBorn(new Date(resultSet.getDate("date_born").getTime()));
+            client.setDateRegist(new Date(resultSet.getDate("date_regist").getTime()));
 
             clients.add(client);
         }
@@ -136,7 +136,7 @@ public class ClientsRepository {
         var connection = connectionFactory.getConnection();
 
         var query = """
-                SELECT id, name, email, cpf, phone, born_date, register_date
+                SELECT id, name, email, cpf, phone, date_born, date_regist
                 FROM clients
                 WHERE id = ?;
                 """;
@@ -156,8 +156,8 @@ public class ClientsRepository {
             client.setEmail(resultSet.getString("email"));
             client.setCpf(resultSet.getString("cpf"));
             client.setPhone(resultSet.getString("phone"));
-            client.setBornDate(new Date(resultSet.getDate("born_date").getTime()));
-            client.setRegisterDate(new Date(resultSet.getDate("register_date").getTime()));
+            client.setDateBorn(new Date(resultSet.getDate("born_date").getTime()));
+            client.setDateRegist(new Date(resultSet.getDate("date_regist").getTime()));
 
 
         }
