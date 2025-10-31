@@ -55,21 +55,19 @@ public class Client {
         this.phone = phone;
     }
 
-    public Date getBornDate() {
-        return bornDate;
+    public Date getDateBorn() {
+        return dateBorn;
     }
 
-    public void setBornDate(Date bornDate) {
-        this.bornDate = bornDate;
+    public void setDateBorn(Date dateBorn) {
+        this.dateBorn = dateBorn;
     }
 
-    public Date getRegisterDate() {
-        return registerDate;
+    public Date getDateRegist() {
+        return dateRegist;
     }
 
-    public void setRegisterDate(Date registerDate) {
-        this.registerDate = registerDate;
+    public void setDateRegist(Date dateRegist) {
+        this.dateRegist = dateRegist;
     }
-
-
 }
