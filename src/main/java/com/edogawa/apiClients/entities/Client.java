@@ -11,8 +11,8 @@ public class Client {
     private String email;
     private String cpf;
     private String phone;
-    private Date bornDate;
-    private Date registerDate;
+    private Date dateBorn;
+    private Date dateRegist;
 
 
     public UUID getId() {
